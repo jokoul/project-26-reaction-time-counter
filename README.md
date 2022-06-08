@@ -2,13 +2,15 @@
 
 ## Description
 
-This application allow you to test your reaction time, it was designed with vuejs and deploy with Netlify Hosting. Through this project, I use lifecycle Hooks like mounted to fire some functions at differents stage of my application. I use also custom event with $emit methods to send data from child components to the parent component.
+This application allow you to test and measure your reaction time, it was designed with vuejs and deploy with Netlify Hosting. Through this project, I use lifecycle Hooks like mounted to fire some functions at different stages of my application running. I use also custom event with $emit method to send data from child components to the parent component.
 
 ## Stack
 
 Vue.js, NetliFy
 
 ## Launch
+
+https://jade-griffin-d47936.netlify.app/
 
 ## Project setup
 
