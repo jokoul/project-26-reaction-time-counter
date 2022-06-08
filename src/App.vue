@@ -1,13 +1,46 @@
 <template>
   <div>
     <h1>Reaction Time Counter</h1>
+    <p class="text">
+      Click on the play button to start the game, then you must click quickly on
+      the green box as soon as it will show.
+    </p>
+    <button @click="start" v-bind:disabled="isPlaying">Play</button>
+    <Block v-if="isPlaying" :delay="delay" @end="endGame" />
+    <!-- <p v-if="showResults">Reaction time : {{ score }} ms</p> -->
+    <Result v-if="showResults" :score="score" />
   </div>
 </template>
 
 <script>
+import Block from "./components/Block.vue";
+import Result from "./components/Result.vue";
+
 export default {
   name: "App",
-  components: {},
+  components: { Block, Result },
+  data() {
+    return {
+      isPlaying: false,
+      delay: null,
+      score: null,
+      showResults: false,
+    };
+  },
+  methods: {
+    start() {
+      this.delay = 2000 + Math.random() * 5000;
+      this.isPlaying = true;
+      // console.log(this.delay);
+      this.showResults = false;
+    },
+    endGame(reactionTime) {
+      this.score = reactionTime;
+      this.isPlaying = false;
+      this.showResults = true;
+      console.log(reactionTime);
+    },
+  },
 };
 </script>
 
@@ -19,5 +52,25 @@ export default {
   text-align: center;
   color: #444;
   margin-top: 60px;
+}
+h1 {
+  color: #0faf87;
+  text-shadow: 0 3px 2px rgb(131, 39, 39);
+  letter-spacing: 2px;
+}
+button {
+  background: #0faf87;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin: 10px;
+}
+button[disabled] {
+  opacity: 0.2;
+  cursor: not-allowed;
 }
 </style>
